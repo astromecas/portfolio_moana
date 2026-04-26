@@ -1,0 +1,133 @@
+/* sobre.css — agora só tem a estante de livros favoritos */
+
+.sec-sobre {
+  background: 
+    linear-gradient(rgba(15,10,5,0.92), rgba(5,3,1,0.98)), /* Parede escura de biblioteca quente */
+    url('../img/biblioteca_sobre_bg.png') center top / cover fixed no-repeat;
+  padding: 5rem 2rem;
+  margin-top: -2px; /* Elimina qualquer linha divisória do bloco acima */
+  position: relative;
+}
+
+/* Continuar a textura da galeria e fazer o fade-out gradual revelando a próxima seção */
+.sec-sobre::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 600px;
+  background: 
+    linear-gradient(rgba(8,5,3,0.97), rgba(8,5,3,0.97)),
+    url('../img/biblioteca_sobre_bg.png') center top / cover no-repeat; /* Sem 'fixed' para evitar glitch com transforms */
+  pointer-events: none;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 15%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 15%, transparent 100%);
+}
+
+.sec-sobre .wrap {
+  position: relative;
+  z-index: 5;
+}
+
+.estante { margin-top: 0; text-align: center; }
+
+.estante-titulo {
+  font-family: var(--f-ui);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  margin-bottom: 2rem;
+  display: none; /* título já aparece no sec-cab */
+}
+
+.estante-cenario {
+  position: relative;
+  z-index: 5;
+  background:
+    linear-gradient(rgba(30,15,5,0.35), rgba(10,5,2,0.85)), /* Esquenta a imagem da chuva (tom dourado/marrom) */
+    url('../img/biblioteca_chuva_bg.png') center / cover no-repeat;
+  padding: 8rem 3rem 0; /* Espaço para formar o arco */
+  border-radius: 400px 400px 0 0; /* Formato de arco clássico/gótico */
+  border: 16px solid #160e0a; /* Moldura grossa de madeira */
+  border-bottom: none;
+  box-shadow: 
+    0 25px 60px rgba(0,0,0,0.95), /* Sombra projetada na parede */
+    inset 0 0 80px rgba(0,0,0,0.95), /* Sombra interna profunda */
+    inset 0 10px 15px rgba(255,255,255,0.05); /* Leve reflexo na moldura */
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.fav-livros {
+  display: flex;
+  gap: 1.1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.fav {
+  width: 95px;
+  cursor: pointer;
+  transition: transform 0.38s var(--bounce);
+  will-change: transform; /* Promove para camada GPU própria */
+  transform: translateZ(0); /* Força aceleração de hardware */
+  isolation: isolate; /* Impede repaint do fundo ao transformar */
+}
+.fav:hover { transform: translateY(-20px) rotate(-2deg) translateZ(0); }
+
+.fav-capa {
+  width: 100%;
+  aspect-ratio: 2/3;
+  border-radius: 2px 5px 5px 2px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 4px 7px 20px rgba(0,0,0,0.75), -3px 0 7px rgba(0,0,0,0.45);
+}
+
+.fav-nome {
+  font-family: var(--f-corpo);
+  font-style: italic;
+  font-size: 0.7rem;
+  color: rgba(240,232,216,0.45);
+  text-align: center;
+  margin-top: 0.55rem;
+  line-height: 1.3;
+  padding-bottom: 0.9rem;
+}
+
+.estante-tabua {
+  position: relative;
+  height: 22px; /* Espessura frontal da madeira */
+  background: #2b170b; /* Madeira escura */
+  background-image: linear-gradient(to bottom, #4a2713 0%, #2b170b 40%, #120904 100%);
+  border-radius: 2px;
+  box-shadow: 
+    0 25px 40px rgba(0,0,0,0.95), /* Sombra forte na parede */
+    inset 0 1px 1px rgba(255,255,255,0.15), /* Luz na quina */
+    inset 0 -2px 6px rgba(0,0,0,0.8); /* Sombra na base */
+  margin: 0 -25px; /* Avança para os lados */
+  z-index: 2;
+  border-bottom: 3px solid #050201;
+}
+
+/* A superfície do topo da prateleira (profundidade) */
+.estante-tabua::before {
+  content: '';
+  position: absolute;
+  bottom: 100%; left: 8px; right: 8px;
+  height: 35px; /* Profundidade da prateleira */
+  background: #3d2010;
+  background-image: linear-gradient(to top, #3d2010 0%, #1c0e06 100%);
+  transform: perspective(400px) rotateX(65deg);
+  transform-origin: bottom center;
+  box-shadow: inset 0 5px 20px rgba(0,0,0,0.8); /* Sombra no fundo da prateleira */
+  z-index: -1;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+@media (max-width: 600px) {
+  .fav { width: 80px; }
+}

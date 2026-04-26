@@ -1,0 +1,420 @@
+/* hero.css */
+
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 2.5rem;
+  background: linear-gradient(180deg, rgba(18,16,14,0.96) 0%, transparent 100%);
+  backdrop-filter: blur(8px);
+  transition: padding 0.35s, background 0.35s;
+}
+#nav.compacto {
+  padding: 0.7rem 2.5rem;
+  background: rgba(18,16,14,0.97);
+  border-bottom: 1px solid var(--borda);
+}
+.nav-logo {
+  font-family: var(--f-titulo);
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--texto);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-logo span { color: var(--ouro); }
+.nav-logo:hover { color: var(--ouro); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-family: var(--f-ui);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--texto-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+  padding-bottom: 3px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--ouro);
+  transition: width 0.3s var(--suave);
+}
+.nav-links a:hover { color: var(--ouro-c); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.ativo { color: var(--ouro); }
+.nav-links a.ativo::after { width: 100%; }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #0e0c0a;
+  padding-top: 80px; /* espaço para o nav fixo */
+}
+
+/* Fundo fixo do hero: mesma imagem, mesmo filtro da biblioteca */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../img/orfeu_dark_sculpture.png') center top / cover fixed;
+  z-index: 0;
+  pointer-events: none;
+  filter: sepia(0.45) brightness(0.78) contrast(1.1);
+  /* Revela os rostos com mais clareza no topo */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.6) 0%,
+    rgba(0,0,0,0.8) 40%,
+    black 85%,
+    black 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.6) 0%,
+    rgba(0,0,0,0.8) 40%,
+    black 85%,
+    black 100%
+  );
+}
+
+/* linhas de caderno sutis */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0px, transparent 30px,
+    rgba(201,169,78,0.012) 30px, rgba(201,169,78,0.012) 31px
+  );
+  pointer-events: none;
+}
+
+
+
+/* ===== COLAGEM DE FIGURAS ===== */
+.colagem {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.col-item {
+  position: absolute;
+  object-fit: contain;
+}
+
+/* =============================================
+   ORGANIZAÇÃO DA COLAGEM — ZONAS VISUAIS (sem sobreposição)
+
+   ZONA ESQUERDA (left 0–13%)
+     câmera   : topo-esq    (top 5%,  left 0%)
+     gato     : meio-esq    (top 38%, left 2%)
+     máquina  : baixo-esq   (bottom 2%, left 0%)
+
+   ZONA DIREITA (right 0–13%)
+     telefone : topo-dir    (top 5%,  right 0%)
+     relógio  : meio-dir    (top 42%, right 1%)
+     stephen  : baixo-dir   (bottom 2%, right 0%)
+
+   FAIXA TOPO CENTRAL (top 3–12%)
+     lua      : centro-esq  (top 3%, left 26%)
+     lanternas: centro-dir  (top 3%, right 18%)
+
+   FAIXA MEIO INTERNO
+     spiderman: meio interno (top 24%, right 17%)
+
+   FAIXA BASE INTERNA (bottom 2–8%)
+     2026     : baixo-int-esq (bottom 4%, left 17%)
+     fita     : baixo-int-dir (bottom 4%, right 15%)
+   ============================================= */
+
+/* --- ZONA ESQUERDA --- */
+.col-camera {
+  width: 150px;
+  top: 20%; left: 0%;
+  transform: rotate(6deg);
+  opacity: 0.90;
+  filter: drop-shadow(4px 5px 10px rgba(0,0,0,0.6));
+}
+.col-gato {
+  width: 110px;
+  top: 26%; right: 6%;
+  transform: rotate(8deg);
+  opacity: 0.85;
+  filter: drop-shadow(3px 4px 10px rgba(0,0,0,0.5));
+}
+.col-maquina {
+  width: 185px;
+  bottom: 2%; left: 0%;
+  transform: rotate(-3deg);
+  opacity: 0.92;
+  filter: drop-shadow(4px 6px 14px rgba(0,0,0,0.65));
+}
+
+/* --- ZONA DIREITA --- */
+.col-telefone {
+  width: 155px;
+  top: 5%; right: 0%;
+  transform: rotate(-6deg);
+  opacity: 0.90;
+  filter: drop-shadow(4px 5px 12px rgba(0,0,0,0.55));
+}
+.col-relogio {
+  width: 95px;
+  top: 32%; right: 1%;
+  transform: rotate(8deg);
+  opacity: 0.82;
+  filter: drop-shadow(3px 4px 10px rgba(0,0,0,0.5));
+}
+.col-stephen {
+  width: 130px;
+  bottom: 2%; right: 0%;
+  transform: rotate(-4deg);
+  opacity: 0.88;
+  filter: drop-shadow(2px 3px 8px rgba(0,0,0,0.5));
+}
+
+/* --- FAIXA TOPO CENTRAL --- */
+.col-lua {
+  width: 80px;
+  top: 3%; left: 26%;
+  transform: rotate(-10deg);
+  opacity: 0.78;
+  filter: drop-shadow(2px 3px 8px rgba(0,0,0,0.4));
+}
+.col-lanternas {
+  width: 95px;
+  top: 3%; right: 18%;
+  transform: rotate(6deg);
+  opacity: 0.75;
+  filter: drop-shadow(3px 4px 10px rgba(0,0,0,0.45));
+}
+
+/* --- MEIO INTERNO DIREITO (afastado do telefone e relógio) --- */
+.col-spiderman {
+  width: 80px;
+  top: 24%; right: 17%;
+  transform: rotate(12deg);
+  opacity: 0.85;
+  filter: drop-shadow(3px 4px 10px rgba(0,0,0,0.5));
+}
+
+/* --- BASE INTERNA (entre as colunas, acima do chão) --- */
+.col-2026 {
+  width: 140px;
+  bottom: 4%; left: 17%;
+  transform: rotate(3deg);
+  opacity: 0.88;
+  filter: drop-shadow(3px 4px 10px rgba(0,0,0,0.5));
+}
+.col-fita {
+  width: 120px;
+  bottom: 4%; right: 15%;
+  transform: rotate(-6deg);
+  opacity: 0.84;
+  filter: drop-shadow(3px 4px 10px rgba(0,0,0,0.5));
+}
+
+/* estilos de classes não usadas mas que ainda existem no CSS */
+.col-aviao { display: none; }
+.col-anjo  { display: none; }
+.col-jornal { display: none; }
+.col-hopes  { display: none; }
+.col-plotting { display: none; }
+
+/* ===== ESCALA PROPORCIONAL em telas grandes =====
+   a .colagem inteira é escalada a partir do centro —
+   os itens mantêm posicionamento relativo entre si */
+@media (min-width: 1400px) {
+  .colagem { transform: scale(1.18); transform-origin: center center; }
+}
+@media (min-width: 1700px) {
+  .colagem { transform: scale(1.38); transform-origin: center center; }
+}
+@media (min-width: 2000px) {
+  .colagem { transform: scale(1.6); transform-origin: center center; }
+}
+
+/* títulos de livros no fundo */
+.hero-livros-bg {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+.lb {
+  position: absolute;
+  font-family: var(--f-titulo);
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: rgba(201,169,78,0.04);
+  white-space: nowrap;
+  user-select: none;
+}
+.l1 { top: 18%;  left: 4%;   transform: rotate(-12deg); }
+.l2 { top: 22%;  right: 5%;  transform: rotate(8deg); }
+.l3 { top: 72%;  right: 8%;  transform: rotate(-5deg); }
+.l4 { top: 67%;  left: 6%;   transform: rotate(6deg); color: rgba(201,169,78,0.03); }
+.l5 { top: 46%;  left: 48%;  transform: rotate(-3deg); color: rgba(201,169,78,0.025); }
+
+/* conteúdo central */
+.hero-meio {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 820px;
+  padding: 0 2rem;
+}
+
+/* foto de perfil */
+.hero-perfil {
+  flex-shrink: 0;
+  opacity: 0;
+  animation: surgir 0.9s 0.3s forwards;
+}
+.hero-perfil-moldura {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid var(--ouro);
+  box-shadow:
+    0 0 0 6px rgba(201,169,78,0.15),
+    0 0 40px rgba(201,169,78,0.2),
+    0 8px 30px rgba(0,0,0,0.8);
+  overflow: hidden;
+  position: relative;
+}
+.hero-perfil-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: sepia(0.15) brightness(0.95);
+  transition: transform 0.5s var(--suave);
+}
+.hero-perfil-moldura:hover .hero-perfil-foto {
+  transform: scale(1.06);
+}
+
+.hero-texto {
+  text-align: left; /* Restaurado para o padrão original */
+}
+.hero-pre {
+  margin-left: 2.5rem; /* Empurra um pouco para o centro sem ir demais para a direita */
+  font-family: var(--f-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #fff8d6;
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: surgir 0.9s 0.3s forwards;
+  text-shadow:
+    0 0 6px  rgba(0,0,0,1),
+    0 1px 3px rgba(0,0,0,1),
+    0 2px 8px rgba(0,0,0,0.9);
+}
+.hero-nome {
+  position: relative;
+  display: inline-block;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  animation: surgir 0.9s 0.55s forwards;
+}
+.foto-destaque {
+  position: absolute;
+  top: -30px;
+  right: -170px;
+  width: 160px;
+  transform: rotate(8deg);
+  border: 6px solid #f4f0ec;
+  border-bottom: 24px solid #f4f0ec;
+  border-radius: 2px;
+  box-shadow: 4px 6px 14px rgba(0,0,0,0.6);
+  z-index: 10;
+  opacity: 0;
+  animation: surgir 0.9s 0.75s forwards;
+  object-fit: cover;
+}
+.hero-nome span {
+  display: block;
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  color: var(--texto);
+  text-shadow: 0 0 60px rgba(0,0,0,0.8);
+}
+.hero-nome em {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1rem, 3vw, 1.7rem);
+  color: var(--ouro-c);
+  letter-spacing: 0.12em;
+  margin-top: 0.3rem;
+}
+.hero-bio {
+  font-family: var(--f-corpo);
+  font-style: italic;
+  font-size: clamp(0.9rem, 1.7vw, 1.1rem);
+  color: var(--texto-dim);
+  margin-top: 1.4rem;
+  line-height: 1.8;
+  opacity: 0;
+  animation: surgir 0.9s 0.8s forwards;
+}
+.hero-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--f-ui);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--texto);
+  text-decoration: none;
+  border: 1px solid var(--borda);
+  padding: 0.75rem 2.2rem;
+  border-radius: 2px;
+  transition: all 0.3s;
+  opacity: 0;
+  animation: surgir 0.9s 1.05s forwards;
+  background: rgba(18,16,14,0.7);
+}
+.hero-btn:hover {
+  background: rgba(201,169,78,0.1);
+  border-color: var(--ouro);
+  color: var(--ouro-c);
+}
+@keyframes surgir {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 900px) {
+  .colagem { display: none; }
+  .hero-nota { display: none; }
+  .nav-links { gap: 1rem; }
+  #nav { padding: 1rem 1.2rem; }
+
+  .hero-perfil-moldura { width: 150px; height: 150px; }
+}
+@media (max-width: 600px) {
+  .hero-perfil-moldura { width: 120px; height: 120px; }
+}

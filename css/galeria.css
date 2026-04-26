@@ -1,0 +1,171 @@
+/* galeria.css — imagem simples, sem animações */
+
+.sec-galeria {
+  background: 
+    linear-gradient(rgba(15,10,6,0.93), rgba(8,5,3,0.97)), /* Escurece a textura para não roubar a cena */
+    url('../img/biblioteca_sobre_bg.png') center top / cover fixed no-repeat; /* Fundo unificado com a biblioteca abaixo */
+  padding: 3rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+  margin-top: -2px; /* Elimina qualquer linha divisória */
+}
+
+/* Transição suave vindo da seção Biblioteca (fundo escuro) */
+.sec-galeria::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 280px;
+  background: linear-gradient(to bottom, #0a0602 0%, rgba(10,6,2,0.6) 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* luz ambiente dourada atrás do mural */
+.sec-galeria::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse at center,
+    rgba(201,169,78,0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ===== CORTINAS ===== */
+.cortina {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 130px;
+  z-index: 10;
+  pointer-events: none;
+}
+.cortina.esq { left: 0; }
+.cortina.dir { right: 0; }
+
+/* tecido da cortina — gradiente simula dobras de veludo */
+.cortina-tecido {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 100%;
+  background:
+    repeating-linear-gradient(
+      to right,
+      rgba(0,0,0,0.28)    0px,
+      rgba(0,0,0,0)       8px,
+      rgba(255,255,255,0.04) 14px,
+      rgba(0,0,0,0)       20px,
+      rgba(0,0,0,0.22)    28px,
+      rgba(0,0,0,0)       36px,
+      rgba(255,255,255,0.03) 42px,
+      rgba(0,0,0,0)       50px
+    ),
+    linear-gradient(to right,
+      #1a0608 0%,
+      #3d0d12 18%,
+      #5c1118 32%,
+      #6b1520 48%,
+      #4a0d14 68%,
+      #2e0810 85%,
+      #1a0608 100%
+    );
+}
+.cortina.esq .cortina-tecido {
+  clip-path: polygon(0 0, 100% 0, 78% 100%, 0 100%);
+}
+.cortina.dir .cortina-tecido {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 22% 100%);
+}
+
+
+.mural-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.5rem;
+  margin-top: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* container decorativo ao redor da imagem */
+.mural-frame {
+  position: relative;
+  display: inline-block;
+}
+
+/* moldura dourada */
+.mural-frame::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border: 2px solid rgba(201,169,78,0.45);
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 1px rgba(201,169,78,0.12),
+    0 0 30px rgba(201,169,78,0.08),
+    inset 0 0 30px rgba(0,0,0,0.3);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* canto decorativo superior-esquerdo */
+.mural-frame::after {
+  content: '✦';
+  position: absolute;
+  top: -22px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: rgba(201,169,78,0.6);
+  letter-spacing: 1rem;
+  text-shadow: 0 0 10px rgba(201,169,78,0.3);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* cantos ornamentais */
+.mural-corner {
+  position: absolute;
+  width: 28px; height: 28px;
+  border-color: rgba(201,169,78,0.55);
+  border-style: solid;
+  z-index: 5;
+  pointer-events: none;
+}
+.mural-corner.tl { top: -14px; left: -14px; border-width: 2px 0 0 2px; border-radius: 3px 0 0 0; }
+.mural-corner.tr { top: -14px; right: -14px; border-width: 2px 2px 0 0; border-radius: 0 3px 0 0; }
+.mural-corner.bl { bottom: -14px; left: -14px; border-width: 0 0 2px 2px; border-radius: 0 0 0 3px; }
+.mural-corner.br { bottom: -14px; right: -14px; border-width: 0 2px 2px 0; border-radius: 0 0 3px 0; }
+
+
+
+/* legenda abaixo */
+.mural-legenda {
+  text-align: center;
+  margin-top: 1.4rem;
+  font-family: var(--f-corpo);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: rgba(201,169,78,0.4);
+  letter-spacing: 0.08em;
+}
+
+.mural-img {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 820px) {
+  .mural-frame::before { inset: -6px; }
+}

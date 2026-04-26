@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio Astromecas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/biblioteca.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/curriculo.css">
+  <link rel="stylesheet" href="css/sobre.css">
+  <link rel="stylesheet" href="css/galeria.css">
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <p class="loader-nome">astromecas.</p>
+  </div>
+
+  <nav id="nav">
+    <a href="#topo" class="nav-logo">Astromecas<span>.</span></a>
+    <div class="nav-links">
+      <a href="#materias">Matérias</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#sobre">Minha Estante</a>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <section id="topo" class="hero">
+
+    <div class="colagem" aria-hidden="true">
+      <img class="col-item col-camera"   src="img/deco_camera_filme.png"   alt="">
+      <img class="col-item col-gato"     src="img/deco_gato_jornal.png"    alt="">
+      <img class="col-item col-maquina"  src="img/deco_maquina_escrever.png" alt="">
+      <img class="col-item col-relogio"  src="img/deco_relogio.png"        alt="">
+      <img class="col-item col-fita"     src="img/deco_fita.png"           alt="">
+      <img class="col-item col-lua"      src="img/deco_lua.png"            alt="">
+      <img class="col-item col-lanternas" src="img/deco_lanternas.png"     alt="">
+      <img class="col-item col-2026"       src="img/deco_2026.png"        alt="">
+      <img class="col-item col-stephen"    src="img/deco_stephen_king.png" alt="">
+    </div>
+
+    <div class="hero-meio">
+      <div class="hero-perfil">
+        <div class="hero-perfil-moldura">
+          <img src="img/foto_moana.jpg" alt="Moana Astromecas" class="hero-perfil-foto">
+        </div>
+      </div>
+
+      <div class="hero-texto">
+        <p class="hero-pre">Portfólio Escolar · 2026</p>
+
+        <h1 class="hero-nome">
+          <span>Moana</span>
+          <em>Astromecas Santiago</em>
+        </h1>
+
+        <p class="hero-bio">
+          Tenho 17 anos, estou no último ano do ensino médio e, apesar de estudar tecnologia, me interesso mais por áreas como arte e expressão. Pretendo cursar Psicologia e depois me tornar escritora. Também quero estudar fora para conhecer novas culturas e ampliar minha visão de mundo.
+        </p>
+
+        <a href="#materias" class="hero-btn">Explorar Portfólio ↓</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- matérias -->
+  <section id="materias" class="sec-bib">
+    <div class="wrap">
+      <div class="sec-cab reveal">
+        <span class="sec-label">Acervo Acadêmico</span>
+        <h2 class="sec-titulo">A Biblioteca</h2>
+        <p class="sec-sub">Cada matéria virou um volume. Clique nos livros para abrir.</p>
+      </div>
+    </div>
+
+    <div class="bib reveal">
+      <div class="bib-luz"></div>
+
+      <div class="bib-parede">
+
+        <div class="estante-madeira">
+
+          <!-- prateleira de cima -->
+          <div class="prateleira-row">
+            <div class="prateleira-bg"></div>
+            <div class="livros-container">
+
+              <div class="livro-grupo">
+                <button class="livro" onclick="abrirMateria('ling')">
+                  <div class="livro-corpo">
+                    <div class="livro-capa" style="background-image:url('img/historia_secreta.jpg')"></div>
+                    <div class="livro-lombada"></div>
+                    <div class="livro-overlay"><span>Linguagens</span><small>clique pra abrir</small></div>
+                  </div>
+                </button>
+                <div class="placa">Linguagens</div>
+              </div>
+
+              <div class="livro-grupo">
+                <button class="livro" onclick="abrirMateria('mat')">
+                  <div class="livro-corpo">
+                    <div class="livro-capa" style="background-image:url('img/maldicao_tita.jpg')"></div>
+                    <div class="livro-lombada"></div>
+                    <div class="livro-overlay"><span>Matemática</span><small>clique pra abrir</small></div>
+                  </div>
+                </button>
+                <div class="placa">Matemática</div>
+              </div>
+
+              <div class="livro-grupo">
+                <button class="livro" onclick="abrirMateria('nat')">
+                  <div class="livro-corpo">
+                    <div class="livro-capa" style="background-image:url('img/academia.jpg')"></div>
+                    <div class="livro-lombada"></div>
+                    <div class="livro-overlay"><span>Natureza</span><small>clique pra abrir</small></div>
+                  </div>
+                </button>
+                <div class="placa">Natureza</div>
+              </div>
+
+            </div>
+            <div class="prateleira-base"></div>
+          </div>
+
+          <!-- prateleira de baixo -->
+          <div class="prateleira-row">
+            <div class="prateleira-bg"></div>
+            <div class="livros-container">
+
+              <div class="livro-grupo">
+                <button class="livro" onclick="abrirMateria('hum')">
+                  <div class="livro-corpo">
+                    <div class="livro-capa" style="background-image:url('img/era_uma_vez.jpg')"></div>
+                    <div class="livro-lombada"></div>
+                    <div class="livro-overlay"><span>Humanas</span><small>clique pra abrir</small></div>
+                  </div>
+                </button>
+                <div class="placa">Humanas</div>
+              </div>
+
+              <div class="livro-grupo">
+                <button class="livro" onclick="abrirMateria('tec')">
+                  <div class="livro-corpo">
+                    <div class="livro-capa" style="background-image:url('img/suicidas.jpg')"></div>
+                    <div class="livro-lombada"></div>
+                    <div class="livro-overlay"><span>Técnico</span><small>clique pra abrir</small></div>
+                  </div>
+                </button>
+                <div class="placa">Téc. Sistemas</div>
+              </div>
+
+            </div>
+            <div class="prateleira-base"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- modal das matérias -->
+  <div class="modal-bg" id="modal">
+    <div class="modal-box">
+      <button class="modal-fechar" onclick="fecharMateria()">✕</button>
+      <div class="modal-head">
+        <p class="modal-vol" id="modalVol"></p>
+        <h3 class="modal-ttl" id="modalTtl"></h3>
+      </div>
+      <div class="modal-body">
+        <div class="abas">
+          <button class="aba on" onclick="trocarAba(this,'p1')">I trimestre</button>
+          <button class="aba"    onclick="trocarAba(this,'p2')">II trimestre</button>
+          <button class="aba"    onclick="trocarAba(this,'p3')">III trimestre</button>
+        </div>
+        <div id="modalConteudo"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- galeria / mural -->
+  <section id="galeria" class="sec-galeria">
+    <div class="wrap">
+      <div class="sec-cab reveal">
+        <span class="sec-label">Da Minha Galeria</span>
+        <h2 class="sec-titulo">Um Pouco da Minha Vida</h2>
+      </div>
+    </div>
+
+    <div class="mural-wrapper">
+      <div class="mural-frame">
+        <span class="mural-corner tl"></span>
+        <span class="mural-corner tr"></span>
+        <span class="mural-corner bl"></span>
+        <span class="mural-corner br"></span>
+
+        <img
+          src="img/mural.png"
+          alt="Mural de memórias da Moana"
+          class="mural-img"
+        >
+      </div>
+      <p class="mural-legenda">Memórias, sonhos & fragmentos de vida</p>
+    </div>
+
+    <div class="cortina esq" aria-hidden="true">
+      <div class="cortina-tecido"></div>
+    </div>
+    <div class="cortina dir" aria-hidden="true">
+      <div class="cortina-tecido"></div>
+    </div>
+  </section>
+
+
+  <!-- minha estante de livros favoritos -->
+  <section id="sobre" class="sec-sobre">
+    <div class="wrap" style="max-width:1100px">
+
+      <div class="sec-cab reveal">
+        <h2 class="sec-titulo">Minha Estante</h2>
+        <span class="sec-label" style="display:block; margin-top: 0.5rem;">Leituras Favoritas</span>
+        <div class="sec-linha"></div>
+      </div>
+
+      <div class="estante reveal">
+        <div class="estante-cenario">
+          <div class="fav-livros">
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/historia_secreta.jpg')"></div><p class="fav-nome">A História Secreta</p></div>
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/maldicao_tita.jpg')"></div><p class="fav-nome">A Maldição do Titã</p></div>
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/academia.jpg')"></div><p class="fav-nome">Academia dos Casos Arquivados</p></div>
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/era_uma_vez.jpg')"></div><p class="fav-nome">Era Uma Vez um Coração Partido</p></div>
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/suicidas.jpg')"></div><p class="fav-nome">Suicidas</p></div>
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/jantar_secreto.png')"></div><p class="fav-nome">Jantar Secreto</p></div>
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/jogos_heranca.png')"></div><p class="fav-nome">Jogos de Herança</p></div>
+          </div>
+          <div class="estante-tabua"></div>
+
+          <div class="fav-livros" style="margin-top:2.5rem; justify-content:center;">
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/jogos_vorazes.png')"></div><p class="fav-nome">Jogos Vorazes</p></div>
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/verity.png')"></div><p class="fav-nome">Verity</p></div>
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/keeping_13.jpg')"></div><p class="fav-nome">Keeping 13</p></div>
+            <div class="fav"><div class="fav-capa" style="background-image:url('img/oraculo_oculto.jpg')"></div><p class="fav-nome">O Oráculo Oculto</p></div>
+          </div>
+          <div class="estante-tabua"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- portfólios antigos e certificados -->
+  <section id="arquivos" class="sec-arquivos">
+    <div class="wrap" style="text-align: center;">
+      <details class="arquivos-toggle">
+        <summary class="arquivos-summary">
+          Portfólios Passados & Certificados <span class="seta">▼</span>
+        </summary>
+
+        <div class="arquivos-grid">
+          <div class="arq-coluna">
+            <h3 class="arq-subtitulo">Portfólios Anteriores</h3>
+            <p class="arq-desc">Os portfólios dos anos anteriores:</p>
+
+            <a href="https://sites.google.com/estudante.sesisenai.org.br/moana/in%C3%ADcio" target="_blank" class="btn-link">Google Sites (2º Ano) ↗</a>
+
+            <div class="canva-embed-wrapper">
+              <div style="position: relative; width: 100%; height: 0; padding-top: 56.2225%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
+                <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                  src="https://www.canva.com/design/DAF-KwtWvEQ/g6Uc4zggKy0wyYkic1iTCQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+                </iframe>
+              </div>
+              <a href="https://www.canva.com/design/DAF-KwtWvEQ/g6Uc4zggKy0wyYkic1iTCQ/view?utm_content=DAF-KwtWvEQ&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener" class="canva-link">Canva (1º Ano) ↗</a>
+            </div>
+          </div>
+
+          <div class="arq-coluna">
+            <h3 class="arq-subtitulo">Certificações</h3>
+            <p class="arq-desc">Conquistas e participações:</p>
+
+            <div class="arq-certs">
+              <a href="img/cert1.png" target="_blank" class="arq-cert-link"><img src="img/cert1.png" alt="Certificado de Conclusão"></a>
+              <a href="img/cert2.png" target="_blank" class="arq-cert-link"><img src="img/cert2.png" alt="Certificado de Participação Oficina"></a>
+              <a href="img/cert3.png" target="_blank" class="arq-cert-link"><img src="img/cert3.png" alt="Certificado de Participação Palestra"></a>
+            </div>
+
+            <div class="arq-curriculo" style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(201,169,78,0.1);">
+              <h3 class="arq-subtitulo">Curriculum Vitae</h3>
+              <p class="arq-desc" style="margin-bottom: 1.2rem;">Meu histórico acadêmico e profissional:</p>
+              <a href="https://docs.google.com/document/d/1b2DgfotV-EzpZg-TVs-LA13Db57glA6lme8p0lbVn4U/edit?usp=sharing" target="_blank" class="btn-link" style="margin-bottom: 0; display: block; text-align: center;">Abrir Currículo (Google Docs) ↗</a>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; Moana Astromecas Santiago · 2026 · SESI SENAI</p>
+  </footer>
+
+  <button id="voltarTopo" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script src="js/materias.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
