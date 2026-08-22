@@ -1,0 +1,284 @@
+/* modal.css
+   janela que abre quando clica num livro
+   estilo "página de livro" — escuro, elegante, simples */
+
+.modal-bg {
+  position: fixed; inset: 0;
+  z-index: 900;
+  background: rgba(8,6,4,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.38s;
+  backdrop-filter: blur(8px);
+}
+
+.modal-bg.aberto {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-box {
+  background: linear-gradient(145deg, #1c1610 0%, #141008 100%);
+  border: 1px solid rgba(201,169,78,0.2);
+  border-radius: 4px;
+  max-width: 720px;
+  width: 92%;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 50px 120px rgba(0,0,0,0.88);
+  transform: translateY(50px) scale(0.95);
+  transition: transform 0.45s var(--suave);
+}
+
+.modal-bg.aberto .modal-box {
+  transform: none;
+}
+
+/* scrollbar custom */
+.modal-box::-webkit-scrollbar { width: 4px; }
+.modal-box::-webkit-scrollbar-track { background: transparent; }
+.modal-box::-webkit-scrollbar-thumb { background: var(--ouro-dim); border-radius: 2px; }
+
+.modal-fechar {
+  position: absolute;
+  top: 1.2rem; right: 1.2rem;
+  background: none;
+  border: 1px solid rgba(201,169,78,0.28);
+  color: var(--ouro);
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.28s;
+}
+
+.modal-fechar:hover {
+  background: rgba(201,169,78,0.1);
+  border-color: var(--ouro-c);
+}
+
+.modal-head {
+  padding: 2.2rem 2.8rem 1.8rem;
+  border-bottom: 1px solid rgba(201,169,78,0.1);
+}
+
+.modal-vol {
+  font-family: var(--f-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--ouro);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.modal-ttl {
+  font-family: var(--f-titulo);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.modal-body {
+  padding: 1.8rem 2.8rem 2.8rem;
+}
+
+/* abas dos trimestres */
+.abas {
+  display: flex;
+  border-bottom: 1px solid rgba(201,169,78,0.14);
+  margin-bottom: 1.8rem;
+}
+
+.aba {
+  font-family: var(--f-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  padding: 0.7rem 1.3rem;
+  background: none;
+  border: none;
+  color: rgba(240,232,216,0.32);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.28s;
+}
+
+.aba:hover, .aba.on {
+  color: var(--ouro-c);
+  border-bottom-color: var(--ouro);
+}
+
+/* painéis de conteúdo */
+.painel { display: none; }
+.painel.ativo {
+  display: block;
+  animation: entrar 0.3s ease;
+}
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* blocos dentro dos painéis */
+.bloco {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(201,169,78,0.1);
+  border-radius: 3px;
+  padding: 1.3rem 1.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.bloco h4 {
+  font-family: var(--f-ui);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  margin-bottom: 0.65rem;
+}
+
+.bloco p, .bloco li {
+  font-family: var(--f-corpo);
+  font-size: 1rem;
+  color: rgba(240,232,216,0.7);
+  line-height: 1.72;
+}
+
+.bloco ul { padding-left: 1.1rem; }
+.bloco li { margin-bottom: 0.22rem; }
+
+/* ── activity cards ────────────────────────────── */
+.atividade-card {
+  border-left: 2px solid var(--ouro);
+}
+
+.ativ-tag {
+  font-family: var(--f-ui);
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  background: rgba(201,169,78,0.08);
+  display: inline-block;
+  padding: 0.22rem 0.65rem;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.atividade-card h4 {
+  font-family: var(--f-titulo);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--texto);
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 0.55rem;
+}
+
+.ativ-hab {
+  font-family: var(--f-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: rgba(240,232,216,0.55);
+  margin-bottom: 0.4rem;
+}
+
+.ativ-hab strong { color: var(--ouro-dim); }
+
+.ativ-obj {
+  font-family: var(--f-corpo);
+  font-size: 0.9rem;
+  color: rgba(240,232,216,0.68);
+  line-height: 1.68;
+  margin-bottom: 0.75rem;
+}
+
+.ativ-obj strong { color: rgba(240,232,216,0.85); }
+
+.embed-wrapper {
+  margin: 0.9rem auto;
+  max-width: 65%;
+}
+
+.embed-link {
+  display: inline-block;
+  font-family: var(--f-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--ouro-c);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201,169,78,0.3);
+  padding-bottom: 0.1rem;
+  margin-top: 0.5rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.embed-link:hover {
+  color: var(--ouro);
+  border-bottom-color: var(--ouro);
+}
+
+.doc-link {
+  display: block;
+  margin: 0.75rem 0;
+  background: rgba(201,169,78,0.06);
+  padding: 0.6rem 0.9rem;
+  border-radius: 3px;
+  border: 1px solid rgba(201,169,78,0.18);
+  font-size: 0.68rem;
+}
+
+.ativ-critica {
+  font-family: var(--f-corpo);
+  font-size: 0.88rem;
+  color: rgba(240,232,216,0.5);
+  line-height: 1.7;
+  border-left: 2px solid rgba(201,169,78,0.2);
+  padding-left: 0.75rem;
+  margin-top: 0.8rem;
+}
+
+/* ── lock placeholder ───────────────────────────── */
+.bloco-lock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background: rgba(255,255,255,0.018);
+  border: 1px dashed rgba(201,169,78,0.18);
+  border-radius: 4px;
+}
+
+.lock-icon {
+  font-size: 2.2rem;
+  filter: grayscale(0.3);
+  opacity: 0.6;
+}
+
+.lock-txt {
+  font-family: var(--f-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ouro);
+}
+
+.lock-sub {
+  font-family: var(--f-corpo);
+  font-size: 0.82rem;
+  color: rgba(240,232,216,0.3);
+}
+
+@media (max-width: 600px) {
+  .modal-head, .modal-body { padding: 1.4rem; }
+}

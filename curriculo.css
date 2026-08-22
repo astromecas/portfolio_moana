@@ -1,0 +1,187 @@
+/* curriculo.css
+   seção do currículo — duas colunas, visual de documento elegante */
+
+.sec-cv {
+  background: linear-gradient(180deg, #0a0806 0%, #0e0c09 100%);
+  padding: 7rem 2rem;
+}
+
+/* o card do cv em si */
+.cv {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  border: 1px solid var(--borda);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 45px 110px rgba(0,0,0,0.72);
+}
+
+/* coluna esquerda — tom escuro esverdeado de biblioteca */
+.cv-esq {
+  background: linear-gradient(180deg, #141c15, #0e1410);
+  padding: 2.6rem 1.7rem;
+  border-right: 1px solid var(--borda);
+}
+
+/* letra inicial em círculo */
+.cv-avatar {
+  width: 82px; height: 82px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1e2e20, #141c15);
+  border: 2px solid var(--ouro);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-titulo);
+  font-style: italic;
+  font-size: 2.2rem;
+  color: var(--ouro);
+  margin-bottom: 1.3rem;
+}
+
+.cv-nome {
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--texto);
+  line-height: 1.3;
+  margin-bottom: 0.2rem;
+}
+
+.cv-sub {
+  font-family: var(--f-corpo);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: rgba(201,169,78,0.75);
+  margin-bottom: 1.8rem;
+}
+
+/* seção dentro do cv */
+.cv-sec {
+  font-family: var(--f-ui);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(201,169,78,0.15);
+  margin: 1.6rem 0 0.85rem;
+}
+
+.cv-info {
+  font-family: var(--f-ui);
+  font-size: 0.8rem;
+  color: rgba(240,232,216,0.62);
+  margin-bottom: 0.48rem;
+  line-height: 1.4;
+}
+
+/* barras de habilidade */
+.skill { margin-bottom: 0.82rem; }
+
+.skill-topo {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--f-ui);
+  font-size: 0.62rem;
+  color: rgba(240,232,216,0.6);
+  margin-bottom: 0.35rem;
+}
+
+.skill-fundo {
+  height: 3px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* começa em 0 e anima quando aparece na tela */
+.skill-barra {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--terracota), var(--ouro));
+  border-radius: 2px;
+  transition: width 1.1s var(--suave);
+}
+
+/* coluna direita */
+.cv-dir {
+  padding: 2.6rem 2.3rem;
+  background: linear-gradient(180deg, #141008, #100d06);
+}
+
+.cv-dir-sec {
+  font-family: var(--f-ui);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(201,169,78,0.12);
+  margin-bottom: 1.4rem;
+}
+
+/* timeline do histórico */
+.entrada {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 1.7rem;
+}
+
+.entrada::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--ouro), transparent);
+}
+
+.entrada::after {
+  content: '';
+  position: absolute;
+  left: -3px; top: 6px;
+  width: 7px; height: 7px;
+  background: var(--ouro);
+  border-radius: 50%;
+  box-shadow: 0 0 7px rgba(201,169,78,0.45);
+}
+
+.ent-ano {
+  display: block;
+  font-family: var(--f-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: var(--ouro);
+  margin-bottom: 0.22rem;
+}
+
+.ent-titulo {
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--texto);
+  margin-bottom: 0.08rem;
+}
+
+.ent-onde {
+  font-family: var(--f-corpo);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: rgba(201,169,78,0.65);
+  margin-bottom: 0.35rem;
+}
+
+.ent-desc {
+  font-family: var(--f-corpo);
+  font-size: 0.93rem;
+  color: rgba(240,232,216,0.58);
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .cv { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .cv-dir { padding: 1.5rem; }
+}

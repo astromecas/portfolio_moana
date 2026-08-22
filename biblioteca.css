@@ -1,0 +1,656 @@
+/* biblioteca.css
+   estante de biblioteca — dark academia */
+
+/* ===== SEÇÃO GERAL ===== */
+.sec-bib {
+  position: relative;
+  background-color: transparent;
+  padding: 4rem 0 0;
+  margin-top: -2px; /* Elimina gap pixel entre hero e bib */
+}
+
+/* Escultura fixa — mesma imagem e posição do hero: transição invisível */
+.sec-bib::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 700px;
+  background: url('../img/orfeu_dark_sculpture.png') center top / cover fixed;
+  z-index: 0;
+  pointer-events: none;
+  filter: sepia(0.45) brightness(0.78) contrast(1.1);
+  /* Só fade no rodapé: o topo continua naturalmente do hero */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black  0%,
+    black  68%,
+    rgba(0,0,0,0.25) 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black  0%,
+    black  68%,
+    rgba(0,0,0,0.25) 88%,
+    transparent 100%
+  );
+}
+
+/* Overlay leve — só escurece o rodapé para a estante */
+.sec-bib::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 700px;
+  background: linear-gradient(
+    to bottom,
+    transparent           0%,
+    transparent          55%,
+    rgba(8,5,1,0.55)     82%,
+    rgba(5,3,1,1)       100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sec-bib .wrap { 
+  padding-bottom: 0;
+  position: relative;
+  z-index: 5;
+}
+
+.sec-bib .sec-cab {
+  position: relative;
+  margin-bottom: 3rem;
+  z-index: 5; /* ficar acima de ambos os pseudo-elementos */
+}
+
+/* Ajustando as cores do texto para destaque sobre o fundo rasgado */
+.sec-bib .sec-label {
+  color: #e5c97a;
+}
+
+.sec-bib .sec-titulo {
+  color: #f0e8d8;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+}
+
+.sec-bib .sec-sub {
+  color: rgba(240,232,216,0.7);
+}
+
+.bib {
+  position: relative;
+  margin-top: 0.5rem;
+  z-index: 2;
+}
+
+/* Fade de entrada no topo da estante — dissolve a escultura no fundo da estante */
+.bib::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, #050301, transparent);
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* ===== TETO ===== */
+.bib-teto {
+  height: 20px;
+  background: linear-gradient(180deg, #1c1008, #140c05);
+  border-bottom: 2px solid rgba(201,169,78,0.12);
+  box-shadow: 0 6px 40px rgba(0,0,0,0.95);
+}
+
+.bib-luz {
+  height: 10px;
+  background: radial-gradient(ellipse at 50% 0%,
+    rgba(255,155,30,0.09) 0%,
+    rgba(255,130,20,0.03) 45%,
+    transparent 100%
+  );
+}
+
+/* ===== LUSTRE ===== */
+.lustre {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.lustre-fio {
+  width: 2px;
+  height: 45px;
+  background: linear-gradient(180deg, #c9a84c, #7a5615);
+}
+
+.lustre-base {
+  width: 130px;
+  height: 30px;
+  background: linear-gradient(180deg, #6b4a10 0%, #c9a84c 50%, #6b4a10 100%);
+  clip-path: polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%);
+  border-bottom: 2px solid rgba(201,169,78,0.55);
+  box-shadow:
+    0 0 25px rgba(201,169,78,0.22),
+    inset 0 1px 0 rgba(255,220,140,0.3);
+}
+
+.lustre-glow {
+  width: 420px;
+  height: 260px;
+  margin-top: -8px;
+  background: radial-gradient(ellipse at 50% 0%,
+    rgba(255,180,40,0.11) 0%,
+    rgba(255,150,30,0.05) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: tremeluz 5s ease-in-out infinite;
+}
+
+@keyframes tremeluz {
+  0%, 100% { opacity: 0.85; transform: scaleX(1); }
+  42%       { opacity: 1; }
+  44%       { opacity: 0.4; transform: scaleX(0.98); }
+  46%       { opacity: 1; }
+  75%       { opacity: 0.9; }
+}
+
+/* ===== PAREDE — lambri de madeira ===== */
+.bib-parede {
+  position: relative;
+  background:
+    /* painéis verticais */
+    repeating-linear-gradient(90deg,
+      transparent 0px, transparent 118px,
+      rgba(0,0,0,0.22) 118px, rgba(0,0,0,0.22) 120px,
+      rgba(255,255,255,0.018) 120px, rgba(255,255,255,0.018) 122px,
+      transparent 122px, transparent 240px
+    ),
+    /* textura horizontal */
+    repeating-linear-gradient(180deg,
+      transparent 0px, transparent 14px,
+      rgba(0,0,0,0.035) 14px, rgba(0,0,0,0.035) 15px
+    ),
+    /* escurecimento sobre a foto (fade pro chão escuro) */
+    linear-gradient(180deg, rgba(10,6,2,0.72) 0%, rgba(10,6,2,0.58) 50%, #0a0602 100%),
+    /* foto de biblioteca */
+    url('../img/bg_biblioteca_romance.png') center center / cover no-repeat;
+  padding: 3.5rem 5rem 5rem;
+  border-left: none;
+  border-right: none;
+  box-shadow:
+    inset 0 0 100px rgba(0,0,0,0.45),
+    inset 25px 0 50px rgba(0,0,0,0.28),
+    inset -25px 0 50px rgba(0,0,0,0.28),
+    inset 0 -80px 100px -30px #0a0602; /* Fade escuro no chão */
+}
+
+/* moldura de coroa superior */
+.bib-parede::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 22px;
+  background: linear-gradient(180deg, #6b4a1a, #3d2010);
+  border-bottom: 2px solid rgba(201,169,78,0.25);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+/* ===== ARANDELAS ===== */
+.arandela {
+  position: absolute;
+  top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+
+.arandela.esq { left: 4%; }
+.arandela.dir { right: 4%; }
+
+.ar-haste {
+  width: 3px;
+  height: 28px;
+  background: linear-gradient(180deg, #c9a84c, #7a5615);
+}
+
+.ar-cupula {
+  width: 28px;
+  height: 16px;
+  background: linear-gradient(180deg, #6b4a10, #c9a84c 55%, #6b4a10);
+  clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+  border-bottom: 1px solid rgba(201,169,78,0.55);
+}
+
+.ar-brilho {
+  width: 140px;
+  height: 150px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 5%,
+    rgba(255,185,55,0.13) 0%,
+    rgba(255,160,40,0.06) 40%,
+    transparent 72%
+  );
+  animation: tremeluz 3.8s 1s ease-in-out infinite;
+}
+
+/* ===== ESTANTE DE MADEIRA (MULTI-PRATELEIRA) ===== */
+.estante-madeira {
+  position: relative;
+  z-index: 2;
+  margin-top: 1rem;
+}
+
+.prateleira-row {
+  position: relative;
+  margin-bottom: 4.5rem; /* space between shelves */
+}
+
+/* Fundo com livros antigos */
+.prateleira-bg {
+  position: absolute;
+  bottom: 30px; /* same as base height */
+  left: -5rem; right: -5rem;
+  height: 200px;
+  background: url('../img/bg_livros.png') repeat-x bottom left;
+  background-size: auto 200px;
+  opacity: 0.28; /* dark and mysterious */
+  z-index: 0;
+  box-shadow: inset 0 -25px 40px rgba(0,0,0,0.95);
+}
+
+.livros-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4rem;
+  padding: 0 1rem;
+  height: 240px; /* height of the books */
+  position: relative;
+  z-index: 20; /* HIGH Z-INDEX to prevent plaques hiding behind prateleira-base */
+}
+
+.livro-grupo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 140px;
+  perspective: 1200px; /* Perspectiva 3D para a animação do livro */
+}
+
+/* ===== CADA LIVRO ===== */
+.livro {
+  width: 100%;
+  flex-shrink: 0;
+  cursor: pointer;
+  transform-origin: bottom center;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); /* Movimento mais fluido e longo */
+  z-index: 1;
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transform-style: preserve-3d;
+}
+
+.livro:hover {
+  /* Levanta, aumenta e gira levemente em 3D para o usuário */
+  transform: translateY(-25px) scale(1.08) rotateY(-12deg) rotateX(4deg);
+  z-index: 20;
+}
+
+/* capa do livro com altura fixa */
+.livro-corpo {
+  position: relative;
+  width: 100%;
+  height: 240px;               /* FIXO — todos iguais */
+  flex-shrink: 0;
+  border-radius: 3px 6px 6px 3px;
+  background-color: #f0ebd8;   /* cor base das páginas */
+  box-shadow:
+    -6px 0 14px rgba(0,0,0,0.75),
+    12px 14px 28px rgba(0,0,0,0.85);
+  transition: box-shadow 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.livro:hover .livro-corpo {
+  box-shadow:
+    20px 25px 45px rgba(0,0,0,0.85),
+    -10px 10px 20px rgba(0,0,0,0.6);
+}
+
+/* Simulação de texto na primeira página */
+.livro-corpo::before {
+  content: 'Prólogo \A\A "A história não é o que aconteceu, mas o que sobreviveu para ser contado." \A\A Ao abrir este livro, você adentra um universo de aprendizados e descobertas. Cada página virada representa uma etapa superada, um conceito compreendido e um novo horizonte explorado. \A\A Leia com atenção.';
+  white-space: pre-wrap;
+  position: absolute;
+  inset: 20px 15px 20px 25px; /* Margem maior à esquerda (lombada) */
+  font-family: var(--f-corpo);
+  font-size: 0.55rem;
+  line-height: 1.5;
+  color: rgba(30, 20, 10, 0.4); /* Cor de tinta desbotada */
+  text-align: justify;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.1s;
+  z-index: 2;
+}
+
+/* Quando o livro abre, a "tinta" da página aparece */
+.livro.livro-aberto .livro-corpo::before {
+  opacity: 1;
+}
+
+.livro-capa {
+  position: absolute; 
+  top: 0; bottom: 0; left: 0; right: 5px; /* deixa espaço para as páginas na direita */
+  background-size: cover;
+  background-position: center top;
+  border-radius: 3px 2px 2px 3px;
+  box-shadow: inset -2px 0 5px rgba(0,0,0,0.25);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 3;
+  transform-origin: left center; /* O eixo de rotação é a lombada */
+  transform-style: preserve-3d;
+}
+
+/* Verso da capa (parte de dentro / contracapa) */
+.livro-capa::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: inherit; /* Puxa a mesma imagem da capa do HTML */
+  background-size: cover;
+  background-position: center top;
+  border-radius: 2px 3px 3px 2px;
+  transform: rotateY(180deg) translateZ(1px);
+  backface-visibility: hidden;
+  pointer-events: none;
+  /* Escurece levemente para parecer o verso e adiciona sombra na dobra */
+  filter: brightness(0.6) contrast(1.2);
+  box-shadow: inset 5px 0 15px rgba(0,0,0,0.8);
+}
+
+.livro.livro-aberto .livro-capa::after {
+  opacity: 1;
+}
+
+.livro:hover .livro-capa {
+  /* Capa "abre" em 3D no hover */
+  transform: rotateY(-22deg);
+}
+
+/* Animação do livro abrindo ao clicar */
+.livro.livro-aberto {
+  transform: translateY(-25px) scale(1.15) rotateY(0deg) rotateX(0deg) !important;
+  z-index: 50 !important;
+}
+
+.livro.livro-aberto .livro-corpo {
+  box-shadow:
+    20px 25px 45px rgba(0,0,0,0.85),
+    -10px 10px 20px rgba(0,0,0,0.6) !important;
+}
+
+.livro.livro-aberto .livro-capa {
+  /* Abre totalmente a capa */
+  transform: rotateY(-160deg) !important;
+}
+
+.livro.livro-aberto .livro-overlay {
+  opacity: 0 !important;
+}
+
+/* lombada esquerda (sombra de dobra) */
+.livro-lombada {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 14px;
+  background: linear-gradient(90deg,
+    rgba(0,0,0,0.88) 0%,
+    rgba(0,0,0,0.15) 70%,
+    transparent 100%
+  );
+  z-index: 4;
+  border-radius: 3px 0 0 3px;
+}
+
+/* simulação de páginas do lado direito */
+.livro-corpo::after {
+  content: '';
+  position: absolute;
+  top: 3px; bottom: 3px; right: 0;
+  width: 5px;
+  background: repeating-linear-gradient(180deg, #f0ebd8 0px, #f0ebd8 2px, #d6cdb4 2px, #d6cdb4 4px);
+  border-radius: 0 4px 4px 0;
+  z-index: 1;
+}
+
+/* overlay no hover */
+.livro-overlay {
+  position: absolute; inset: 0; z-index: 3;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(6,3,1,0.97) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.livro:hover .livro-overlay { opacity: 1; }
+
+.livro-overlay span {
+  font-family: var(--f-ui);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--ouro-c);
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.livro-overlay small {
+  font-family: var(--f-corpo);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: rgba(240,232,216,0.65);
+}
+
+/* Placa na prateleira */
+.placa {
+  position: absolute;
+  bottom: -18px; 
+  background: linear-gradient(180deg, #241c15 0%, #110d0a 100%);
+  color: #fcebbb;
+  padding: 3px 14px;
+  font-family: var(--f-titulo);
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 3px;
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.8),
+    inset 0 1px 1px rgba(255,255,255,0.1),
+    inset 0 -1px 2px rgba(0,0,0,0.6);
+  letter-spacing: 0.15em;
+  z-index: 10;
+  pointer-events: none;
+  border: 1px solid rgba(229,201,122,0.3);
+  white-space: nowrap;
+  text-shadow: 
+    0 1px 2px rgba(0,0,0,0.9),
+    0 0 6px rgba(229,201,122,0.4);
+}
+
+/* ===== VELA DECORATIVA ===== */
+.deco-vela {
+  position: absolute;
+  left: 32%; /* Put candle between the first and second book */
+  bottom: 0;
+  width: 20px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 10px;        /* fica pousada na prateleira */
+  z-index: 15;
+}
+
+.vela-corpo {
+  width: 12px;
+  height: 55px;
+  background: linear-gradient(90deg,
+    #f5e8c8 0%, #fffde0 40%, #e8d5a0 100%
+  );
+  border-radius: 2px 2px 1px 1px;
+  box-shadow:
+    inset -2px 0 4px rgba(0,0,0,0.15),
+    0 2px 8px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.vela-corpo::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 1.5px;
+  height: 8px;
+  background: #555;
+  border-radius: 1px;
+}
+
+.vela-chama {
+  width: 10px;
+  height: 16px;
+  background: radial-gradient(ellipse at 50% 80%,
+    #fff5a0 0%,
+    #ffb830 40%,
+    rgba(255,80,0,0.7) 75%,
+    transparent 100%
+  );
+  border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+  margin-bottom: -6px;
+  filter: blur(1px);
+  animation: chama 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes chama {
+  from { transform: scaleX(1)   scaleY(1)   rotate(-1deg); opacity: 0.95; }
+  to   { transform: scaleX(0.85) scaleY(1.1) rotate(1.5deg); opacity: 1; }
+}
+
+/* ===== GLOBO DECORATIVO ===== */
+.deco-globo {
+  position: absolute;
+  left: 20%; /* Put globe to the left of the books */
+  bottom: 0;
+  width: 55px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 5px;
+  z-index: 15;
+}
+
+.globo-esfera {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%,
+    rgba(180,220,255,0.08) 0%,
+    rgba(100,160,220,0.04) 40%,
+    rgba(30,80,140,0.08) 100%
+  );
+  border: 1px solid rgba(201,169,78,0.35);
+  box-shadow:
+    inset 0 0 20px rgba(0,0,0,0.4),
+    0 4px 14px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* linhas do globo */
+.globo-esfera::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(180deg,
+      transparent 0px, transparent 10px,
+      rgba(201,169,78,0.12) 10px, rgba(201,169,78,0.12) 11px
+    );
+}
+
+.globo-esfera::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(90deg,
+      transparent 0px, transparent 10px,
+      rgba(201,169,78,0.08) 10px, rgba(201,169,78,0.08) 11px
+    );
+}
+
+.globo-base {
+  width: 32px;
+  height: 8px;
+  background: linear-gradient(180deg, #8b6820, #5a4010);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  margin-top: -1px;
+}
+
+/* ===== PRATELEIRA BASE ===== */
+.prateleira-base {
+  height: 30px;
+  background: transparent;
+  box-shadow: none;
+  margin: 0 -5rem;
+  position: relative;
+  z-index: 10;
+}
+
+
+
+
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px) {
+  .bib-parede { padding: 2rem 1.5rem 0; }
+  .prateleira-base { margin: 0 -1.5rem; }
+  .arandela { display: none; }
+  .livros-container { gap: 2rem; }
+}
+
+@media (max-width: 640px) {
+  .livros-container { height: auto; min-height: 220px; gap: 1rem; flex-wrap: wrap; justify-content: space-around; }
+  .livro-grupo { width: 100px; }
+  .livro-corpo { height: 160px; }
+  .prateleira-row { margin-bottom: 3.5rem; }
+  .deco-vela, .deco-globo { display: none; }
+}
